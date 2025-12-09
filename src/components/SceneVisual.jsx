@@ -4,29 +4,31 @@ import {
   Sparkles, Sun, Skull, Flower, Coins, Scroll
 } from 'lucide-react';
 
-// Mapování typů scén na obrázky (cesta v public složce)
+// Mapování typů scén na obrázky (názvy souborů v public složce)
 const sceneImages = {
-  'town_dark': '/namesti.jpg',
-  'forge': '/kovar.jpg',
-  'krádež': '/kradez.jpg',
-  'herbalist': '/babka.jpg',
-  'flower': '/louka.jpg',
-  'lektvar': '/lektvar.jpg',
-  'inn': '/hostinec.jpg',
-  'coins': '/mesec.jpg ',
-  'well': '/studna.jpg',
-  'crossroads': '/brana.jpg',
-  'forest_dark': '/pavouk.jpg',
-  'reka': '/reka.jpg',
-  'obr': '/obr.jpg',
-  'riddle': '/hadanka.jpg',
-  'elf': '/svatyne.jpg',
-  'victory': '/victory.jpg',
-  'jezero': '/jezero.jpg',
-  'sraz': '/sraz.jpg',
-  'vrchol': '/vrchol.jpg'
-
+  'town_dark': 'namesti.jpg',
+  'forge': 'kovar.jpg',
+  'krádež': 'kradez.jpg',
+  'herbalist': 'babka.jpg',
+  'flower': 'louka.jpg',
+  'lektvar': 'lektvar.jpg',
+  'inn': 'hostinec.jpg',
+  'coins': 'mesec.jpg',
+  'well': 'studna.jpg',
+  'crossroads': 'brana.jpg',
+  'forest_dark': 'pavouk.jpg',
+  'reka': 'reka.jpg',
+  'obr': 'obr.jpg',
+  'riddle': 'hadanka.jpg',
+  'elf': 'svatyne.jpg',
+  'victory': 'victory.jpg',
+  'jezero': 'jezero.jpg',
+  'sraz': 'sraz.jpg',
+  'vrchol': 'vrchol.jpg'
 };
+
+// Pomocná funkce pro získání správné cesty k obrázku (s BASE_URL pro GitHub Pages)
+const getImagePath = (filename) => `${import.meta.env.BASE_URL}${filename}`;
 
 export default function SceneVisual({ type }) {
   const iconProps = { strokeWidth: 1.5, className: "text-[#2c1810] opacity-80" };
@@ -60,14 +62,14 @@ export default function SceneVisual({ type }) {
     default: title = "PŘÍBĚH"; content = <Scroll size={100} {...iconProps} />;
   }
 
-  const imageSrc = sceneImages[type];
+  const imageFilename = sceneImages[type];
 
   // Pokud existuje obrázek pro daný typ scény, zobrazíme ho přes celou plochu
-  if (imageSrc) {
+  if (imageFilename) {
     return (
       <div className="w-full h-full relative overflow-hidden">
         <img
-          src={imageSrc}
+          src={getImagePath(imageFilename)}
           alt={title}
           className="absolute inset-0 w-full h-full object-cover"
         />
